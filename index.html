@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HTML & CSS Effects</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      margin: 0;
+    }
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      perspective: 1000px; /* Adding perspective for 3D effect */
+    }
+    .effect {
+      padding: 20px;
+      background-color: white;
+      border: 1px solid #ccc;
+      text-align: center;
+      width: 200px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer; /* Add cursor pointer for interaction */
+      border-radius: 10px; /* Rounded corners for a softer look */
+      transform-style: preserve-3d; /* Ensures 3D transformations apply properly */
+    }
+    .effect:hover {
+      transform: translateY(-5px); /* Move up on hover */
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+    }
+    .effect::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.1);
+      transform: translate3d(0, 100%, -20px); /* Initial position below */
+      transition: transform 0.3s ease;
+      z-index: -1; /* Behind the button */
+      border-radius: 10px; /* Rounded corners match the button */
+    }
+    .effect:hover::before {
+      transform: translate3d(0, 0, 0); /* Move up on hover to create 3D effect */
+    }
+    .effect span {
+      position: relative;
+      z-index: 1; /* Above pseudo-element */
+    }
+    /* Specific animations based on class names */
+    .fade-in {
+      animation: fadeIn 2s ease-in-out;
+    }
+    .fade-out {
+      animation: fadeOut 2s ease-in-out;
+    }
+    .slide-in-left {
+      animation: slideInLeft 1s ease-in-out;
+    }
+    .slide-in-right {
+      animation: slideInRight 1s ease-in-out;
+    }
+    .text-fade-in {
+      animation: textFadeIn 2s ease-in-out;
+    }
+    .color-change:hover {
+      color: red;
+      transition: color 0.5s ease;
+    }
+    .rotate {
+      animation: rotate 4s linear infinite;
+    }
+    .shadow-3d {
+      box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .shadow-3d:hover {
+      background-color: #ffeb3b;
+      box-shadow: 0 0 20px 10px rgba(255, 255, 0, 0.8);
+    }
+
+    /* Keyframes for animations */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @keyframes fadeOut {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+    @keyframes slideInLeft {
+      0% {
+        transform: translateX(-100%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+    @keyframes slideInRight {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+    @keyframes textFadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    @keyframes rotate {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="effect fade-in"><span>Fade In</span></div>
+    <div class="effect fade-out"><span>Fade Out</span></div>
+    <div class="effect slide-in-left"><span>Slide In Left</span></div>
+    <div class="effect slide-in-right"><span>Slide In Right</span></div>
+    <div class="effect text-fade-in"><span>Text Fade In</span></div>
+    <div class="effect color-change"><span>Hover to Change Color</span></div>
+    <div class="effect rotate"><span>Rotating Element</span></div>
+    <div class="effect shadow-3d"><span>3D Shadow</span></div>
+  </div>
+</body>
+</html>
